@@ -83,6 +83,8 @@ const slides: {
   },
 ];
 
+export const assets = slides.map((item) => item.picture.src);
+
 export default function Onboarding({
   navigation,
 }: StackNavigationProps<Routes, "Onboarding">) {
@@ -106,7 +108,7 @@ export default function Onboarding({
             outputRange: [0, 1, 0],
           });
           return (
-            <Animated.View style={[styles.underlay, { opacity }]}>
+            <Animated.View style={[styles.underlay, { opacity }]} key={index}>
               <Image
                 source={picture.src}
                 resizeMode="contain"
