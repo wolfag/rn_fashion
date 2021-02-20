@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 
-import { Button } from "../../components";
+import { Text, Button } from "../../components";
+
 const { height } = Dimensions.get("window");
 
 export const SLIDE_HEIGHT = 0.61 * height;
@@ -21,8 +22,12 @@ export default function Subslide({
 }: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.subtitle}>{subtitle}</Text>
-      <Text style={styles.description}>{description}</Text>
+      <Text variant="title2" style={styles.subtitle}>
+        {subtitle}
+      </Text>
+      <Text variant="body" style={styles.description}>
+        {description}
+      </Text>
       <Button
         label={last ? "Let`s get started" : "Next"}
         variant={last ? "primary" : "default"}
@@ -38,20 +43,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 44,
+    marginTop: 40,
   },
   subtitle: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: 24,
-    color: "#0c0d34",
-    textAlign: "center",
-    lineHeight: 30,
     marginBottom: 12,
+    textAlign: "center",
   },
   description: {
-    fontFamily: "SFProText-Regular",
-    fontSize: 16,
-    lineHeight: 24,
-    color: "#0c0d34",
     textAlign: "center",
     marginBottom: 40,
   },

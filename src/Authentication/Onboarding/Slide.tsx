@@ -1,16 +1,20 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import { View, Dimensions, StyleSheet, Image } from "react-native";
+
+import { Text } from "../../components";
 
 const { width, height } = Dimensions.get("window");
 
 export const SLIDE_HEIGHT = 0.61 * height;
+export const BORDER_RADIUS = 75;
 
 interface Props {
   title: string;
   right?: boolean;
+  picture: number;
 }
 
-export default function Slide({ title, right }: Props) {
+export default function Slide({ title, right, picture }: Props) {
   const transform = [
     {
       translateY: (SLIDE_HEIGHT - 100) / 2,
@@ -24,8 +28,11 @@ export default function Slide({ title, right }: Props) {
   ];
   return (
     <View style={styles.container}>
+      <View style={styles.underlay}>
+        <Image source={picture} style={styles.picture} resizeMode="contain" />
+      </View>
       <View style={[styles.titleContainer, { transform }]}>
-        <Text style={styles.title}>{title}</Text>
+        <Text variant="hero">{title}</Text>
       </View>
     </View>
   );
@@ -37,11 +44,14 @@ const styles = StyleSheet.create({
     height: 100,
     justifyContent: "center",
   },
-  title: {
-    fontSize: 80,
-    fontFamily: "SFProText-Bold",
-    color: "#fff",
-    textAlign: "center",
-    lineHeight: 80,
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex-end",
+  },
+  picture: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+    borderBottomRightRadius: BORDER_RADIUS,
   },
 });
