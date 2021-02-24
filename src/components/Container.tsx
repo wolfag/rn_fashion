@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Dimensions, Image, StatusBar, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import theme, { Box } from "./Theme";
+import { Box, useTheme } from "./Theme";
 
 const { width } = Dimensions.get("window");
 const aspectRatio = 980 / 1400;
@@ -18,6 +18,8 @@ export const assets = [require("../Authentication/assets/patterns/1.jpg")];
 
 export default function Container({ children, footer }: Props) {
   const insets = useSafeAreaInsets();
+  const theme = useTheme();
+
   return (
     <Box flex={1} backgroundColor="secondary">
       <StatusBar barStyle="light-content" />

@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import {
-  View,
-  StyleSheet,
   Dimensions,
   Image,
   ImageRequireSource,
+  StyleSheet,
+  View,
 } from "react-native";
 import Animated, {
   divide,
@@ -13,7 +13,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { interpolateColor, useScrollHandler } from "react-native-redash";
 
-import { theme } from "../../components";
+import { makeStyles, Theme, useTheme } from "../../components";
 import { Routes, StackNavigationProps } from "../../components/Navigation";
 
 import Dot from "./Dot";
@@ -21,6 +21,38 @@ import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslide";
 
 const { width } = Dimensions.get("window");
+
+const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  slider: {
+    height: SLIDE_HEIGHT,
+    borderBottomRightRadius: theme.borderRadii.xl,
+  },
+  footer: {
+    flex: 1,
+  },
+  footerContent: {
+    flex: 1,
+    backgroundColor: "#fff",
+    borderTopLeftRadius: theme.borderRadii.xl,
+  },
+  pagination: {
+    ...StyleSheet.absoluteFillObject,
+    height: theme.borderRadii.xl,
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex-end",
+    borderBottomRightRadius: theme.borderRadii.xl,
+    overflow: "hidden",
+  },
+}));
 
 const slides: {
   title: string;
@@ -88,6 +120,8 @@ export const assets = slides.map((item) => item.picture.src);
 export default function Onboarding({
   navigation,
 }: StackNavigationProps<Routes, "Onboarding">) {
+  const theme = useTheme();
+  const styles = useStyles();
   const scroll = useRef<Animated.ScrollView>(null);
   const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = interpolateColor(x, {
@@ -180,35 +214,3 @@ export default function Onboarding({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  slider: {
-    height: SLIDE_HEIGHT,
-    borderBottomRightRadius: theme.borderRadii.xl,
-  },
-  footer: {
-    flex: 1,
-  },
-  footerContent: {
-    flex: 1,
-    backgroundColor: "#fff",
-    borderTopLeftRadius: theme.borderRadii.xl,
-  },
-  pagination: {
-    ...StyleSheet.absoluteFillObject,
-    height: theme.borderRadii.xl,
-    justifyContent: "center",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  underlay: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: "flex-end",
-    borderBottomRightRadius: theme.borderRadii.xl,
-    overflow: "hidden",
-  },
-});
