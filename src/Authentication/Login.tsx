@@ -2,9 +2,10 @@ import { useFormik } from "formik";
 import React, { useRef } from "react";
 import * as yup from "yup";
 
-import { Box, Button, Container, Text, TextInput } from "../../components";
-import Checkbox from "../../components/Form/Checkbox";
-import Footer from "../components/Footer";
+import { Box, Button, Container, Text, TextInput } from "../components";
+import Checkbox from "../components/Form/Checkbox";
+
+import Footer from "./components/Footer";
 
 const LoginSchema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Required"),
