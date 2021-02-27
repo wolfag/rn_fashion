@@ -1,9 +1,11 @@
 import { useFormik } from "formik";
 import React, { useRef } from "react";
 import * as yup from "yup";
+import { TextInput as RNTextInput } from "react-native";
 
 import { Box, Button, Container, Text, TextInput } from "../components";
 import Checkbox from "../components/Form/Checkbox";
+import { Routes, StackNavigationProps } from "../components/Navigation";
 
 import Footer from "./components/Footer";
 
@@ -12,7 +14,9 @@ const LoginSchema = yup.object().shape({
   password: yup.string().min(6, "Too short").required("Required"),
 });
 
-export default function Login() {
+export default function Login({
+  navigation,
+}: StackNavigationProps<Routes, "Login">) {
   const {
     handleChange,
     setFieldValue,
@@ -28,18 +32,18 @@ export default function Login() {
     validationSchema: LoginSchema,
   });
 
-  const passwordRef = useRef<typeof TextInput>(null);
+  const passwordRef = useRef<RNTextInput>(null);
 
   const footer = (
     <Footer
       title="Don`t have an account?"
       action="Sign Up here"
-      onPress={() => true}
+      onPress={() => navigation.navigate("SignUp")}
     />
   );
 
   return (
-    <Container {...{ footer }}>
+    <Container pattern={0} {...{ footer }}>
       <Box padding="xl">
         <Text variant="title1" textAlign="center" marginBottom="l">
           Welcome back
@@ -83,13 +87,17 @@ export default function Login() {
             flexDirection="row"
             justifyContent="space-between"
             paddingVertical="m"
+            marginBottom="m"
           >
             <Checkbox
               label="Remember me"
               checked={values.remember}
               onChange={() => setFieldValue("remember", !values.remember)}
             />
-            <Button variant="transparent" onPress={() => true}>
+            <Button
+              variant="transparent"
+              onPress={() => navigation.navigate("ForgotPassword")}
+            >
               <Text color="primary">Forgot password</Text>
             </Button>
           </Box>

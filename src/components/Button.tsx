@@ -1,9 +1,9 @@
 import { useTheme } from "@shopify/restyle";
 import React, { ReactNode } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
+import { StyleSheet } from "react-native";
+import { BorderlessButton, RectButton } from "react-native-gesture-handler";
 
-import { Theme, Text } from "./Theme";
+import { Text, Theme } from "./Theme";
 
 interface Props {
   variant: "primary" | "default" | "transparent";
@@ -23,12 +23,22 @@ function Button({ label, variant, onPress, children, disabled }: Props) {
       : "transparent";
   const color =
     variant === "primary" ? theme.colors.white : theme.colors.secondary;
-  const containerStyle: ViewStyle =
-    variant === "transparent" ? { height: undefined, width: undefined } : {};
+
+  if (variant === "transparent") {
+    return (
+      <BorderlessButton enabled={!disabled} {...{ onPress }}>
+        {children || (
+          <Text variant="button" style={[styles.label, { color }]}>
+            {label}
+          </Text>
+        )}
+      </BorderlessButton>
+    );
+  }
 
   return (
     <RectButton
-      style={[styles.container, { backgroundColor }, containerStyle]}
+      style={[styles.container, { backgroundColor }]}
       enabled={!disabled}
       {...{ onPress }}
     >

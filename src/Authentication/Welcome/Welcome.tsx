@@ -57,7 +57,7 @@ export default function Welcome({
             Let`s started
           </Text>
           <Text variant="body" textAlign="center">
-            Login to your account below or signup for an amazing experience
+            Login to your account below or sign up for an amazing experience
           </Text>
           <Button
             variant="primary"
@@ -69,12 +69,12 @@ export default function Welcome({
           <Button
             variant="default"
             label="Join us, it`s Free"
-            onPress={() => true}
+            onPress={() => navigation.navigate("SignUp")}
           />
           <Button
             variant="transparent"
             label="Forgot password"
-            onPress={() => true}
+            onPress={() => navigation.navigate("ForgotPassword")}
           />
         </Box>
       </Box>

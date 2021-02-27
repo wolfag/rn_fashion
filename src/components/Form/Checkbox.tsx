@@ -1,6 +1,6 @@
 import React from "react";
 import { Feather } from "@expo/vector-icons";
-import { RectButton } from "react-native-gesture-handler";
+import { BorderlessButton } from "react-native-gesture-handler";
 
 import { Box, Text, useTheme } from "../index";
 
@@ -16,7 +16,7 @@ export default function Checkbox({ label, checked, onChange }: Props) {
   const color = theme.colors[reColor];
 
   return (
-    <RectButton
+    <BorderlessButton
       onPress={() => onChange && onChange()}
       style={{ justifyContent: "center" }}
     >
@@ -30,6 +30,6 @@ export default function Checkbox({ label, checked, onChange }: Props) {
         </Box>
         <Text variant="button">{label}</Text>
       </Box>
-    </RectButton>
+    </BorderlessButton>
   );
 }
