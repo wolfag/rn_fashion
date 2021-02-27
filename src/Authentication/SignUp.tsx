@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
 import React, { useRef } from "react";
-import * as yup from "yup";
 import { TextInput as RNTextInput } from "react-native";
+import * as yup from "yup";
 
 import { Box, Button, Container, Text, TextInput } from "../components";
-import { Routes, StackNavigationProps } from "../components/Navigation";
+import { AuthNavigationProps } from "../components/Navigation";
 
 import Footer from "./components/Footer";
 
@@ -16,9 +16,7 @@ const SignUpSchema = yup.object().shape({
     .equals([yup.ref("password")], "Password don't match"),
 });
 
-export default function SignUp({
-  navigation,
-}: StackNavigationProps<Routes, "SignUp">) {
+export default function SignUp({ navigation }: AuthNavigationProps<"SignUp">) {
   const {
     handleChange,
     handleBlur,

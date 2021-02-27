@@ -1,11 +1,11 @@
 import React from "react";
 
 import { Box, Button, Container, RoundedIcon, Text } from "../components";
-import { Routes, StackNavigationProps } from "../components/Navigation";
+import { AuthNavigationProps } from "../components/Navigation";
 
 export default function PasswordChanged({
   navigation,
-}: StackNavigationProps<Routes, "PasswordChanged">) {
+}: AuthNavigationProps<"PasswordChanged">) {
   const SIZE = 80;
 
   const footer = (
@@ -29,22 +29,8 @@ export default function PasswordChanged({
             color="primary"
             size={SIZE}
             name="check"
-            iconSize={50}
+            iconRatio={0.7}
           />
-          {/* <Box
-            backgroundColor="primaryLight"
-            style={{
-              width: SIZE,
-              height: SIZE,
-              borderRadius: SIZE / 2,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text color="primary">
-              <Feather name="check" size={50} />
-            </Text>
-          </B> */}
         </Box>
         <Text variant="title1" textAlign="center" marginBottom="l">
           Your password was successfully changed

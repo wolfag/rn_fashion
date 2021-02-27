@@ -1,10 +1,10 @@
-import React from "react";
-import * as yup from "yup";
 import { useFormik } from "formik";
+import React from "react";
 import { Linking } from "react-native";
+import * as yup from "yup";
 
-import { Box, Container, TextInput, Text, Button } from "../components";
-import { Routes, StackNavigationProps } from "../components/Navigation";
+import { Box, Button, Container, Text, TextInput } from "../components";
+import { AuthNavigationProps } from "../components/Navigation";
 
 import Footer from "./components/Footer";
 
@@ -14,7 +14,7 @@ const ForgotPasswordSchema = yup.object().shape({
 
 export default function ForgotPassword({
   navigation,
-}: StackNavigationProps<Routes, "ForgotPassword">) {
+}: AuthNavigationProps<"ForgotPassword">) {
   const {
     handleChange,
     handleBlur,

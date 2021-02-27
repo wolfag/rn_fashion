@@ -14,7 +14,7 @@ import Animated, {
 import { interpolateColor, useScrollHandler } from "react-native-redash";
 
 import { makeStyles, Theme, useTheme } from "../../components";
-import { Routes, StackNavigationProps } from "../../components/Navigation";
+import { AuthNavigationProps } from "../../components/Navigation";
 
 import Dot from "./Dot";
 import Slide, { SLIDE_HEIGHT } from "./Slide";
@@ -72,7 +72,7 @@ const slides: {
       "Confused about your outfit? Don`t worry! Find the best outfit here!",
     color: "#bfeaf5",
     picture: {
-      src: require("../assets/1.png"),
+      src: require("../../../assets/imgs/1.png"),
       width: 2513,
       height: 3583,
     },
@@ -84,7 +84,7 @@ const slides: {
       "Hating the clothes in your wardrobe? Explore hundreds of outfit ideas",
     color: "#beecc4",
     picture: {
-      src: require("../assets/2.png"),
+      src: require("../../../assets/imgs/2.png"),
       width: 2513,
       height: 3583,
     },
@@ -96,7 +96,7 @@ const slides: {
       "Create your individual & unique style and look amazing everyday",
     color: "#ffe4d9",
     picture: {
-      src: require("../assets/3.png"),
+      src: require("../../../assets/imgs/3.png"),
       width: 2513,
       height: 3583,
     },
@@ -108,7 +108,7 @@ const slides: {
       "Discover the latest trends in fashion and explore your personality",
     color: "#ffdddd",
     picture: {
-      src: require("../assets/4.png"),
+      src: require("../../../assets/imgs/4.png"),
       width: 2513,
       height: 3583,
     },
@@ -119,7 +119,7 @@ export const assets = slides.map((item) => item.picture.src);
 
 export default function Onboarding({
   navigation,
-}: StackNavigationProps<Routes, "Onboarding">) {
+}: AuthNavigationProps<"Onboarding">) {
   const theme = useTheme();
   const styles = useStyles();
   const scroll = useRef<Animated.ScrollView>(null);

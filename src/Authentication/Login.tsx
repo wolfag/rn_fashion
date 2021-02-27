@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
 import React, { useRef } from "react";
-import * as yup from "yup";
 import { TextInput as RNTextInput } from "react-native";
+import * as yup from "yup";
 
 import { Box, Button, Container, Text, TextInput } from "../components";
 import Checkbox from "../components/Form/Checkbox";
-import { Routes, StackNavigationProps } from "../components/Navigation";
+import { AuthNavigationProps } from "../components/Navigation";
 
 import Footer from "./components/Footer";
 
@@ -14,9 +14,7 @@ const LoginSchema = yup.object().shape({
   password: yup.string().min(6, "Too short").required("Required"),
 });
 
-export default function Login({
-  navigation,
-}: StackNavigationProps<Routes, "Login">) {
+export default function Login({ navigation }: AuthNavigationProps<"Login">) {
   const {
     handleChange,
     setFieldValue,
@@ -28,7 +26,10 @@ export default function Login({
     isValid,
   } = useFormik({
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => {
+      console.log(values);
+      navigation.navigate("Home");
+    },
     validationSchema: LoginSchema,
   });
 

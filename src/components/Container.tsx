@@ -24,9 +24,9 @@ interface Props {
 }
 
 export const assets = [
-  require("../Authentication/assets/patterns/1.jpg"),
-  require("../Authentication/assets/patterns/2.jpg"),
-  require("../Authentication/assets/patterns/3.jpg"),
+  require("../../assets/imgs/patterns/1.jpg"),
+  require("../../assets/imgs/patterns/2.jpg"),
+  require("../../assets/imgs/patterns/3.jpg"),
 ];
 
 export default function Container({ children, footer, pattern }: Props) {

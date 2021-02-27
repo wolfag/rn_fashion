@@ -9,19 +9,19 @@ interface Props {
   size: number;
   color: keyof Theme["colors"];
   backgroundColor: keyof Theme["colors"];
-  iconSize?: number;
+  iconRatio: number;
   onPress?: () => void;
 }
 
-export default function RoundedIcon({
+function RoundedIcon({
   name,
   size,
   color,
   backgroundColor,
-  iconSize,
+  iconRatio,
   onPress,
 }: Props) {
-  const _iconSize = iconSize || size * 0.8;
+  const iconSize = size * iconRatio;
 
   return (
     <RectButton enabled={!!onPress} {...{ onPress }}>
@@ -36,9 +36,14 @@ export default function RoundedIcon({
         {...{ backgroundColor }}
       >
         <Text {...{ color }}>
-          <Feather size={_iconSize} {...{ name }} />
+          <Feather size={iconSize} {...{ name }} />
         </Text>
       </Box>
     </RectButton>
   );
 }
+RoundedIcon.defaultProps = {
+  iconRatio: 0.8,
+};
+
+export default RoundedIcon;

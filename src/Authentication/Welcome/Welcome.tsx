@@ -1,12 +1,12 @@
 import React from "react";
 import { Dimensions, Image } from "react-native";
 
-import { Box, Text, Button, useTheme } from "../../components";
-import { Routes, StackNavigationProps } from "../../components/Navigation";
+import { Box, Button, Text, useTheme } from "../../components";
+import { AuthNavigationProps } from "../../components/Navigation";
 
 const { width } = Dimensions.get("window");
 const picture = {
-  src: require("../assets/5.png"),
+  src: require("../../../assets/imgs/5.png"),
   width: 3383,
   height: 5074,
 };
@@ -14,7 +14,7 @@ export const assets = [picture.src];
 
 export default function Welcome({
   navigation,
-}: StackNavigationProps<Routes, "Welcome">) {
+}: AuthNavigationProps<"Welcome">) {
   const theme = useTheme();
 
   return (
