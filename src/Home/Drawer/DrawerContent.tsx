@@ -76,6 +76,7 @@ export default function DrawerContent(
           title="MY PROFILE"
           left={{ icon: "x", onPress: () => props.navigation.toggleDrawer() }}
           right={{ icon: "shopping-bag", onPress: () => true }}
+          dark
         />
       </Box>
       <Box flex={1}>
@@ -89,7 +90,7 @@ export default function DrawerContent(
             position: "absolute",
             left: 0,
             right: 0,
-            bottom: -imgHeight * 0.61,
+            bottom: -imgHeight * 0.62,
           }}
         />
         <Box
@@ -131,7 +132,7 @@ export default function DrawerContent(
           source={drawerBackground}
           style={{
             ...StyleSheet.absoluteFillObject,
-            width: undefined,
+            width: DRAWER_WIDTH,
             height: undefined,
             borderTopLeftRadius: theme.borderRadii.xl,
           }}

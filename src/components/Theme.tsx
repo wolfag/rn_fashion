@@ -21,6 +21,8 @@ export const theme = createTheme({
     orange: "orange",
     violet: "violet",
     red: "red",
+    transparent: "transparent",
+    lightBlue: "#bfeaf5",
     test: "red",
   },
   spacing: {

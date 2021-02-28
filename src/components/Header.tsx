@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import RoundedIcon from "./RoundedIcon";
-import { Box, Text } from "./Theme";
+import { Box, Text, Theme } from "./Theme";
 
 interface Props {
   title: string;
@@ -15,12 +15,14 @@ interface Props {
     icon: string;
     onPress: () => void;
   };
+  dark: boolean;
 }
 
 const IconSize = 24;
 
-export default function Header({ title, left, right }: Props) {
+function Header({ title, left, right, dark }: Props) {
   const insets = useSafeAreaInsets();
+  const color: keyof Theme["colors"] = dark ? "white" : "secondary";
 
   return (
     <Box
@@ -35,25 +37,25 @@ export default function Header({ title, left, right }: Props) {
       {left ? (
         <RoundedIcon
           name={left.icon}
-          color="white"
           size={IconSize}
-          backgroundColor="secondary"
+          backgroundColor="transparent"
           onPress={left.onPress}
+          {...{ color }}
         />
       ) : (
         <View />
       )}
 
-      <Text variant="header" color="white">
+      <Text variant="header" {...{ color }}>
         {title.toUpperCase()}
       </Text>
       {right ? (
         <RoundedIcon
           name={right.icon}
-          color="white"
           size={IconSize}
-          backgroundColor="secondary"
+          backgroundColor="transparent"
           onPress={right.onPress}
+          {...{ color }}
         />
       ) : (
         <View />
@@ -61,3 +63,8 @@ export default function Header({ title, left, right }: Props) {
     </Box>
   );
 }
+Header.defaultProps = {
+  dark: false,
+};
+
+export default Header;
