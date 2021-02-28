@@ -4,12 +4,12 @@ import {
 } from "@react-navigation/drawer";
 import React from "react";
 import { Dimensions, Image, StyleSheet } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import img from "../../../assets/imgs/patterns/1.jpg";
-import { Box, RoundedIcon, Text, useTheme } from "../../components";
+import { Box, Header, Text, useTheme } from "../../components";
 
 import DrawerItem, { DrawerItemProps } from "./DrawerItem";
+
+const drawerBackground = require("../../../assets/imgs/patterns/1.jpg");
 
 const { width } = Dimensions.get("window");
 export const DRAWER_WIDTH = width;
@@ -60,7 +60,6 @@ export default function DrawerContent(
   props: DrawerContentComponentProps<DrawerContentOptions>
 ) {
   const theme = useTheme();
-  const insets = useSafeAreaInsets();
 
   return (
     <Box flex={1}>
@@ -72,35 +71,18 @@ export default function DrawerContent(
           borderBottomRightRadius="xl"
           backgroundColor="secondary"
         />
-        <Box
-          flexDirection="row"
-          alignItems="center"
-          justifyContent="space-between"
-          paddingHorizontal="m"
-          style={{
-            paddingTop: insets.top,
-          }}
-        >
-          <RoundedIcon
-            name="x"
-            color="white"
-            size={25}
-            backgroundColor="secondary"
-          />
-          <Text color="white">MY PROFILE</Text>
-          <RoundedIcon
-            name="shopping-bag"
-            color="white"
-            size={25}
-            backgroundColor="secondary"
-          />
-        </Box>
+
+        <Header
+          title="MY PROFILE"
+          left={{ icon: "x", onPress: () => props.navigation.toggleDrawer() }}
+          right={{ icon: "shopping-bag", onPress: () => true }}
+        />
       </Box>
       <Box flex={1}>
         <Box flex={1} backgroundColor="secondary" />
         <Box flex={1} backgroundColor="primary" />
         <Image
-          source={img}
+          source={drawerBackground}
           style={{
             width: DRAWER_WIDTH,
             height: imgHeight,
@@ -144,14 +126,9 @@ export default function DrawerContent(
           ))}
         </Box>
       </Box>
-      <Box
-        flex={0.1}
-        backgroundColor="white"
-        width={DRAWER_WIDTH}
-        height={imgHeight}
-      >
+      <Box flex={0.1} backgroundColor="white" width={DRAWER_WIDTH}>
         <Image
-          source={img}
+          source={drawerBackground}
           style={{
             ...StyleSheet.absoluteFillObject,
             width: undefined,
