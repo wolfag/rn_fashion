@@ -1,4 +1,4 @@
-import { AntDesign, Zocial, Ionicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons, FontAwesome } from "@expo/vector-icons";
 import React, { ReactNode } from "react";
 
 import { Box, useTheme } from "../../components";
@@ -30,7 +30,7 @@ export default function SocialLogin() {
   return (
     <Box flexDirection="row" justifyContent="center">
       <SocialIcon>
-        <Zocial name="facebook" size={24} color="black" />
+        <FontAwesome name="facebook" size={24} color="black" />
       </SocialIcon>
       <SocialIcon>
         <AntDesign name="google" size={24} color="black" />
