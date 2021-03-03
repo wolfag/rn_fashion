@@ -74,7 +74,7 @@ export default function DrawerContent(
 
         <Header
           title="MY PROFILE"
-          left={{ icon: "x", onPress: () => props.navigation.toggleDrawer() }}
+          left={{ icon: "x", onPress: () => props.navigation.closeDrawer() }}
           right={{ icon: "shopping-bag", onPress: () => true }}
           dark
         />

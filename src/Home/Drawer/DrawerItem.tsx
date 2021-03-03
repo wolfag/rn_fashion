@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { RectButton } from "react-native-gesture-handler";
 
@@ -18,8 +19,13 @@ export default function DrawerItem({
 }: DrawerItemProps) {
   const theme = useTheme();
 
+  const navigation = useNavigation();
+
   return (
-    <RectButton style={{ borderRadius: theme.borderRadii.m }}>
+    <RectButton
+      style={{ borderRadius: theme.borderRadii.m }}
+      onPress={() => navigation.navigate(screen)}
+    >
       <Box flexDirection="row" alignItems="center" padding="m">
         <RoundedIcon
           size={36}
