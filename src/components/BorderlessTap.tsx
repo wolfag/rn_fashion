@@ -22,7 +22,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function BorderTap({ onPress, children }: Props) {
+export default function BorderlessTap({ onPress, children }: Props) {
   const clock = useClock();
   const start = useValue(0);
   const opacity = useValue(0);
@@ -34,7 +34,10 @@ export default function BorderTap({ onPress, children }: Props) {
         set(start, clock),
       ]),
       cond(neq(state, State.BEGAN), stopClock(clock)),
-      cond(eq(state, State.END), [stopClock(clock), call([], onPress)]),
+      cond(eq(state, State.END), [
+        stopClock(clock),
+        onPress && call([], onPress),
+      ]),
       set(
         opacity,
         cond(

@@ -1,13 +1,15 @@
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { RectButton } from "react-native-gesture-handler";
 
 import { Box, RoundedIcon, Text, Theme, useTheme } from "../../components";
+import { HomeRoutes } from "../../components/Navigation";
 
 export interface DrawerItemProps {
   icon: string;
   color: keyof Theme["colors"];
-  screen: string;
+  screen: keyof HomeRoutes;
   label: string;
 }
 
@@ -19,7 +21,9 @@ export default function DrawerItem({
 }: DrawerItemProps) {
   const theme = useTheme();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<
+    DrawerNavigationProp<HomeRoutes, "OutfitIdeas">
+  >();
 
   return (
     <RectButton
