@@ -1,45 +1,33 @@
 import React from "react";
+import { ScrollView } from "react-native-gesture-handler";
 
 import { Box, Header, Text } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
 
 import Graph, { Point } from "./Graph";
+import Transaction from "./Transaction";
+
+const minDate = new Date("2019-09-01").getTime();
+const maxDate = new Date("2020-03-01").getTime();
 
 const data: Point[] = [
   {
-    date: new Date("2019-09-01").getTime(),
-    value: 90,
-    color: "primary",
-  },
-  {
-    date: new Date("2019-10-01").getTime(),
-    value: 10,
-    color: "red",
-  },
-  {
     date: new Date("2019-11-01").getTime(),
-    value: 31,
-    color: "orange",
+    value: 139.42,
+    color: "primary",
+    id: 245673,
   },
   {
     date: new Date("2019-12-01").getTime(),
-    value: 29,
-    color: "yellow",
-  },
-  {
-    date: new Date("2020-01-01").getTime(),
-    value: 55,
-    color: "pink",
+    value: 281.23,
+    color: "orange",
+    id: 245672,
   },
   {
     date: new Date("2020-02-01").getTime(),
-    value: 40,
-    color: "violet",
-  },
-  {
-    date: new Date("2020-03-01").getTime(),
-    value: 60,
-    color: "grey",
+    value: 198.54,
+    color: "yellow",
+    id: 245674,
   },
 ];
 
@@ -69,7 +57,12 @@ export default function TransactionHistory({
             <Text color="primary">All Time</Text>
           </Box>
         </Box>
-        <Graph {...{ data }} />
+        <Graph {...{ data, minDate, maxDate }} />
+        <ScrollView>
+          {data.map((transaction) => (
+            <Transaction key={transaction.id} {...{ transaction }} />
+          ))}
+        </ScrollView>
       </Box>
     </Box>
   );

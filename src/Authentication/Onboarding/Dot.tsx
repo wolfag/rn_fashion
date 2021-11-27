@@ -14,9 +14,14 @@ export default function Dot({ index, currentIndex }: Props) {
   });
   const scale = interpolate(currentIndex, {
     inputRange: [index - 1, index, index + 1],
-    outputRange: [1, 1.25, 1],
+    outputRange: [1, 5, 1],
     extrapolate: Extrapolate.CLAMP,
   });
+  const marginHorizontal = interpolate(currentIndex, {
+    inputRange: [index -1, index, index+1],
+    outputRange: [4, 30, 4],
+    extrapolate: Extrapolate.CLAMP
+  })
   return (
     <Animated.View
       style={{
@@ -26,6 +31,7 @@ export default function Dot({ index, currentIndex }: Props) {
         height: 8,
         borderRadius: 4,
         margin: 4,
+        marginHorizontal,
         transform: [{ scale }],
       }}
     />
